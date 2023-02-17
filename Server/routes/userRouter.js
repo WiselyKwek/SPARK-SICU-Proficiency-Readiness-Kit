@@ -16,8 +16,8 @@ userRouter.get("/health", async (req, res) => {
 });
 
 // @description: Authenticate user
-// @route GET user/login
-userRouter.get("/login", async (req, res) => {
+// @route POST user/login
+userRouter.post("/login", async (req, res) => {
   try{
     const { email, password } = req.body;
     const user = await User.findOne({ email: email }); 
@@ -25,7 +25,11 @@ userRouter.get("/login", async (req, res) => {
     if (user) {
       // check password
       if (user.password == password) {
-        return res.status(200).json(user);
+        return res.status(200).json({
+          _id: user._id,
+          email: user.email,
+          userType: user.userType
+        });
       }
       return res.status(400).json({
         msg: 'Invalid Login Credentials'
