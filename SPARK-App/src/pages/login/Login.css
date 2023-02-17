@@ -19,14 +19,14 @@
     -moz-box-shadow: -4px 12px 29px -17px rgba(0,0,0,0.76);
 }
 
-.loginRight {
+.loginLeft {
     background-color: white;
     width: 55%;
     padding: 50px 50px 50px;
     border-radius: 10% 0% 0% 10%;
 }
 
-.loginLeft {
+.loginRight {
     background-color: #ffeb77;
     width: 45%;
     position: relative;
@@ -48,11 +48,11 @@
 }
 
 @media (max-width: 780px) {
-    .loginLeft {
+    .loginRight {
         display: none;
     }
 
-    .loginRight {
+    .loginLeft {
         width: 100%;
         border-radius: 10%;
     }

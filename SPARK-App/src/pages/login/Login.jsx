@@ -51,7 +51,7 @@ function Login() {
     return (
         <div className="login">
             <div className="loginCard">
-                <div className="loginRight">
+                <div className="loginLeft">
                     <div className="loginBrand">
                         <FlareIcon className="loginBrandIcon" sx={{fontSize: '30px', marginRight: '5px', color: 'rgb(65,173,164)'}}/>
                         <Typography className="loginBrandText" fontWeight="bold" letterSpacing={-1} sx={{fontSize: '30px', color: 'rgb(65,173,164)'}}>
@@ -65,7 +65,7 @@ function Login() {
 
                     <StyledButton fullWidth onClick={handleLogin}>Login</StyledButton>
                 </div>
-                <div className="loginLeft">
+                <div className="loginRight">
                     <img className="sideImage" src="../../../assets/login.png"/>
                 </div>
             </div>
