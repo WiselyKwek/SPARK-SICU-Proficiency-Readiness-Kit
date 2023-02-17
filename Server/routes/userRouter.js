@@ -36,6 +36,10 @@ userRouter.post("/login", async (req, res) => {
       });
     }
 
+    return res.status(400).json({
+      msg: 'Invalid Login Credentials'
+    });
+
   } catch (err) {
     console.error(err.message)
     res.status(500).send('Server Error')
