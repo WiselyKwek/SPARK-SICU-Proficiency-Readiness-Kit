@@ -12,12 +12,24 @@ import Sidebar from './components/sidebar/Sidebar'
 import MiniDrawer from './components/miniDrawer/MiniDrawer'
 import PrimarySearchAppBar from './components/test'
 import SubchapterContent from './pages/subchapterContent/SubchapterContent'
+import Bookmarks from './pages/Bookmarks'
+import Subchapters from './pages/Subchapters'
+
 function App() {
 
   return (
     <>
       <div className="App">
         <MiniDrawer/>
+        {/* <Routes>
+          <Route path="/Home" element={<Home/>}/>
+          <Route path="/Bookmarks" element={<Bookmarks/>}/>
+          <Route path="/Calculators" element={<ViewCalculators/>}/>
+          <Route path="/Chapters" element={<Chapters/>}/>
+          <Route path="/subchapterContent" element={<SubchapterContent/>}/>
+          <Route path="/Chapters/:chapterId/subchapters" element={<Subchapters/>}/>
+          <Route path="/CreateSubchapter" element={<CreateSubchapter/>}/>
+        </Routes> */}
       </div>
     </>
   )

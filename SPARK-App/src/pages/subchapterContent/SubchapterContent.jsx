@@ -4,8 +4,9 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import "./subchapterContent.css";
-import { Tooltip } from '@mui/material';
+import { Box, Tooltip } from '@mui/material';
 import axios from 'axios';
+import MiniDrawer from '../../components/miniDrawer/MiniDrawer';
 
 const API_URL = "http://localhost:8080/chapters"
 
@@ -72,6 +73,7 @@ const SubchapterContent = () => {
                 </div>
             </div>
         </div>
+        
     )
 }
 
