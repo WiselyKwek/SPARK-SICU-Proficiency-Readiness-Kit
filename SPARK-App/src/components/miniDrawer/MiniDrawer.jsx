@@ -23,6 +23,7 @@ import FlareIcon from '@mui/icons-material/Flare';
 // react-router-dom
 import { Routes, Route, Link } from 'react-router-dom'
 
+import { useState } from 'react';
 import "./MiniDrawer.css"
 
 // pages
@@ -164,6 +165,7 @@ export default function MiniDrawer() {
     const [open, setOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState(null);
 
+    const [data, setData] = useState('');
     const isMenuOpen = Boolean(anchorEl);
 
     const handleProfileMenuOpen = (event) => {
@@ -176,6 +178,12 @@ export default function MiniDrawer() {
 
     const handleDrawerClose = () => {
         setOpen(false);
+    };
+
+    
+    const handleChange = event => {
+        // console.log("reached here!");
+        setData(event.currentTarget.value);
     };
 
     return (
@@ -212,6 +220,7 @@ export default function MiniDrawer() {
                         <StyledInputBase fullWidth
                             placeholder="Search…"
                             inputProps={{ 'aria-label': 'search' }}
+                            onChange={handleChange}
                         />
                     </Search>
 
@@ -241,7 +250,7 @@ export default function MiniDrawer() {
                 </DrawerHeader>
                 <Divider />
                 <List>
-                    {['Home', 'Bookmarks', 'Calculators', 'Chapters', 'Subchapters', 'Sign In'].map((text, index) => (
+                    {['Chapters', 'Bookmarks', 'Calculators', 'Sign In'].map((text, index) => (
                         <Link key={text} to={text} style={{ textDecoration: 'none' }}>
                             <ListItem disablePadding sx={{ display: 'block' }}>
                                 <ListItemButton
@@ -260,8 +269,8 @@ export default function MiniDrawer() {
                                         {
                                             (() => {
                                                 switch (text) {
-                                                    case 'Home':
-                                                        return <span className="icon">&#127968;</span>;
+                                                    // case 'Home':
+                                                    //     return <span className="icon">&#127968;</span>;
                                                     case 'Bookmarks':
                                                         return <span className="icon">&#128278;</span>;
                                                     case 'Calculators':
@@ -290,15 +299,17 @@ export default function MiniDrawer() {
             <DrawerHeader />
             <Box component="main" sx={{flexGrow: 1}}>
                 <Routes>
-                    <Route path="/Home" element={<Home/>}/>
+                    {/* <Route path="/Home" element={<Home/>}/> */}
                     <Route path="/Bookmarks" element={<Bookmarks/>}/>
                     <Route path="/Calculators" element={<ViewCalculators/>}/>
                     <Route path="/Chapters" element={<Chapters/>}/>
                     <Route path="/subchapterContent" element={<SubchapterContent/>}/>
-                    <Route path="/Chapters/:chapterId/subchapters" element={<Subchapters/>}/>
+                    <Route path="/Chapters/:chapterId/subchapters/:subchapterId/subchapterContent" element={<SubchapterContent/>}/>
+                    <Route path="/Chapters/:chapterId/subchapters" element={<Subchapters searchInput={data}/>}/>
                     <Route path="/CreateSubchapter" element={<CreateSubchapter/>}/>
                     {/* <Route path="/login" element={<Login/>}/> */}
                 </Routes>
+
             </Box>
         </Box>
     );

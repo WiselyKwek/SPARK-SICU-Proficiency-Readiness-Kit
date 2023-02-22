@@ -19,7 +19,7 @@
 }
 
 .subchapterContentTop {
-    height: 100vh;
+    height: default;
     position: relative;
     top: -30px;
     /* border: 5px solid brown; */
@@ -31,7 +31,7 @@
     justify-content: center;
     font-size: 80px;
     position: relative;
-    top: -50px;
+    top: -60px;
 }
 
 .subchapterActions {

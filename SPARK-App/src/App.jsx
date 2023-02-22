@@ -12,10 +12,7 @@ import Sidebar from './components/sidebar/Sidebar'
 import MiniDrawer from './components/miniDrawer/MiniDrawer'
 import PrimarySearchAppBar from './components/test'
 import SubchapterContent from './pages/subchapterContent/SubchapterContent'
-import Bookmarks from './pages/Bookmarks'
 import Subchapters from './pages/Subchapters'
-import Login from './pages/login/Login'
-
 function App() {
 
   return (
