@@ -18,10 +18,9 @@ function App() {
   return (
     <>
       <div className="App">
-        {/* <MiniDrawer/> */}
-        <Routes>
-          <Route path="/login" element={<Login/>}/>
-        </Routes>
+        {/* if not logged in or localstorage is null then don't render mini drawer */}
+        
+        <MiniDrawer/>
       </div>
     </>
   )
