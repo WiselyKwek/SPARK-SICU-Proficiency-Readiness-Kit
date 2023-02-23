@@ -6,9 +6,6 @@ import BookmarkBorderIcon from '@mui/icons-material/BookmarkBorder';
 import "./subchapterContent.css";
 import { Box, Tooltip } from '@mui/material';
 import axios from 'axios';
-import MiniDrawer from '../../components/miniDrawer/MiniDrawer';
-
-const API_URL = "http://localhost:8080/chapters"
 import { useLocation, useNavigate } from 'react-router-dom';
 
 const SubchapterContent = () => {
