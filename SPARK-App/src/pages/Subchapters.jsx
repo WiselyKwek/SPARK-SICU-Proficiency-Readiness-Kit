@@ -6,31 +6,61 @@ import axios from 'axios';
 import AddIcon from '@mui/icons-material/Add';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import SubchapterCard from '../components/subchapters/SubchapterCard';
-
+import { useAppState, useActions } from '../overmind';
 
 const Subchapters = ({ searchInput }) => {
+
     
     const location = useLocation();
     const navigate = useNavigate();
-    const chapterId = location.state.parentChapterId
-    const chapterTitle = location.state.parentChapterTitle
-    const chapterIcon = location.state.parentChapterIcon
-        
-    let filtered = [];
-    const [subchapters, setSubchapters] = useState([]);
+    // overmind states
+    const chapterState = useAppState().chapters;
+    const subchapterState = useAppState().subchapters
+    const userState = useAppState().user
     
+    // overmind actions
+    const subchapterActions = useActions().subchapters
 
+    // get current chapter from overmind state
+    const currentChapter = chapterState.selectedChapter
+
+    // extract currentUser details
+    const userId = userState.currentUser._id
+
+    let chapterId = null
+    let chapterTitle = null
+    let chapterIcon = null
+
+
+    let filtered = [];
+    // const [subchapters, setSubchapters] = useState([]);
+    
     useEffect(() => {
-        
+        // if currentChapter does not exist, then reroute to the chapters page.
+        if (!currentChapter || !userId) {
+            console.log("Current Chapter: ", currentChapter);
+            navigate(`/Chapters`);
+            return;
+        }
+
+        // extract currentchapter details
+        chapterId = currentChapter.currentChapterId
+        chapterTitle = currentChapter.currentChapterTitle
+        chapterIcon = currentChapter.currentChapterIcon
+        console.log("chapterId", chapterId)
+        console.log("chapterTitle", chapterTitle)
+        console.log("chapterIcon", chapterIcon)
+
+        subchapterActions.loadAllSubchaptersWithUserId({chapterId, userId})
         // get all subchapters
-        axios.get(`http://localhost:8080/user/63e87a7780b6c0bcb29d15d0/bookmarks/chapters/${chapterId}`)
-            .then(res => {
-                console.log(res.data[1].subchapters)
-                setSubchapters(res.data[1].subchapters)
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        // axios.get(`http://localhost:8080/user/63e87a7780b6c0bcb29d15d0/bookmarks/chapters/${chapterId}`)
+        //     .then(res => {
+        //         console.log(res.data[1].subchapters)
+        //         setSubchapters(res.data[1].subchapters)
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //     })
     }, [])
 
 
@@ -46,7 +76,7 @@ const Subchapters = ({ searchInput }) => {
         }
     };
 
-    filtered = subchapters.filter((subchapter) => searchSubchapters(searchInput, subchapter))
+    filtered = subchapterState.subchapterlist.filter((subchapter) => searchSubchapters(searchInput, subchapter))
 
 
     return (
@@ -77,7 +107,7 @@ const Subchapters = ({ searchInput }) => {
                             return (
                                 <Grid item key={subchapter._id} xs={12} sm={6} md={4} lg={3}>
                                     <SubchapterCard
-                                    subchapter={subchapter} chapterId={chapterId}/>
+                                        subchapter={subchapter} chapterId={currentChapter.currentChapterId}/>
                                 </Grid>
                             )
                         
